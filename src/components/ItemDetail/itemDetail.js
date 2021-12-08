@@ -16,7 +16,7 @@ export const ItemDetail = ( {idSelected} ) => {
                     <li className="list-group-item"> Marca: {idSelected.marca}</li>
                     <li className="list-group-item">Tipo: {idSelected.tipo}</li>
                     <li className="list-group-item">ID: {idSelected.id}</li>
-                </ul>
+                </ul> 
             </div>
 
         </div>
