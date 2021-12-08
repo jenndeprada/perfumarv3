@@ -1,10 +1,10 @@
-import {stock} from "./../datos/stock"
+import { stock } from "./../datos/stock"
 
 export const pedirDatos = () => {
     return new Promise( (resolve, reject) => {
         setTimeout(()=> {
             resolve(stock)
         }, 2000)
-        
+        reject("something went wrong")
     })
 }

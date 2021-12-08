@@ -1,5 +1,7 @@
 
 
+
+
 export const ItemDetail = ( {idSelected} ) => {
     console.log(idSelected)
     return (
