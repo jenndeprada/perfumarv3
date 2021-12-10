@@ -1,5 +1,6 @@
 import React from "react";
 import '../../../node_modules/bootstrap/js/src/collapse';
+import {Link} from "react-router-dom"
 
 export const Item = ({item}) => {
     let idString = String(item.id);
@@ -26,6 +27,7 @@ export const Item = ({item}) => {
                             <li className="list-group-item">Marca: {item.marca}</li>
                             <li className="list-group-item">Tipo: {item.tipo}</li>
                             <li className="list-group-item">Sexo: Femenino</li>
+                            <li className="list-group-item">Categoria: Femenino</li>
                           </ul>
                         </div>
                       </div>
@@ -33,8 +35,8 @@ export const Item = ({item}) => {
                   </div>
                   <p className="card-text">{item.descripcion}</p>
                   <div className="d-flex justify-content-evenly"> 
-                        <a href="https://www.google.com/?hl=es" className="btn btn-dark">Ver mas</a>
-                        <a href="https://www.google.com/?hl=es" className="btn btn-dark">Agregar</a>
+                        <Link to={`/detail/${item.id}`}><button className="btn btn-dark">Ver mas</button></Link>
+                        <Link to="/cart"><button className="btn btn-dark">Agregar</button></Link>
                   </div>
                
                 </div>

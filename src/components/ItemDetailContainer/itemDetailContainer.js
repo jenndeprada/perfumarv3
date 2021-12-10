@@ -1,29 +1,16 @@
 import  React, { useEffect, useState } from "react";
-import { pedirDatos } from "../../utils/askData";
+import { useParams } from "react-router";
+import { pedirItem } from "../../utils/askData";
 import { ItemDetail } from "../ItemDetail/itemDetail";
-
-
-function apiDatos() {
-    return new Promise((resolve, reject) => {
-        setTimeout(function() {
-            let error = false;
-            if(!(error)){
-                resolve( pedirDatos() )
-                error = true;
-            }
-        }, 300)
-        
-    })
-}
-
-console.log(apiDatos())
 
 
 export const ItemDetailContainer = () => {
     const [item, setItem] = useState(null);
+
+    const {itemId} = useParams()
     
     useEffect(() => {
-        apiDatos().then(function(valor_resolucion){
+        pedirItem(Number(itemId)).then(function(valor_resolucion){
             setItem(valor_resolucion)
             
         })
@@ -46,7 +33,7 @@ export const ItemDetailContainer = () => {
                                 <span className="visually-hidden">Loading...</span>
                             </div>
                         </div> 
-                    : < ItemDetail idSelected={item[0]} />   
+                    : < ItemDetail idSelected={item} />   
                 }
                      
                 </div>
