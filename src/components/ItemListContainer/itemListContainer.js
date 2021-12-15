@@ -11,16 +11,17 @@ function ItemListContainer() {
     const [items, setItems] = useState([])
 
     const {categoryId} = useParams()
-    console.log(useParams())
+    console.log({categoryId})
 
     useEffect(()=>{
 
         setLoading(true)  //creo una referencia a la coleccion de mi base
         const productosReferencia = collection(db, "productos");
-        const q =  categoryId ? query(productosReferencia, where("category", "==", categoryId)) : productosReferencia
+        const q =  categoryId ? query(productosReferencia, where("categoria", "==", categoryId)) : productosReferencia
         //llamo a la ref de la funcion con getDocs
         getDocs(q)
             .then(resp => {
+                console.log(resp)
                 const productos = resp.docs.map((doc) => {
                     return {
                         id: doc.id, //para obtener el id de la base de datos

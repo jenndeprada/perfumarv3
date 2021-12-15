@@ -26,7 +26,7 @@ export const Item = ({item}) => {
                           <ul className="list-group list-group-flush">
                             <li className="list-group-item">Marca: {item.marca}</li>
                             <li className="list-group-item">Tipo: {item.tipo}</li>
-                            <li className="list-group-item">Sexo: Femenino</li>
+                            <li className="list-group-item">Precio: ${item.precio}</li>
                             <li className="list-group-item">Categoria: {item.categoria}</li>
                           </ul>
                         </div>
@@ -34,9 +34,8 @@ export const Item = ({item}) => {
                     </div>
                   </div>
                   <p className="card-text">{item.descripcion}</p>
-                  <div className="d-flex justify-content-evenly"> 
+                  <div className="d-flex"> 
                         <Link to={`/detail/${item.id}`}><button className="btn btn-dark">Ver mas</button></Link>
-                        <Link to="/cart"><button className="btn btn-dark">Agregar</button></Link>
                   </div>
                
                 </div>

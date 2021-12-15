@@ -1,5 +1,6 @@
-import { addDoc, collection, doc, getDoc, updateDoc, writeBatch, query, where, documentId, getDocs } from "firebase/firestore/lite";
+import { addDoc, collection, writeBatch, query, where, documentId, getDocs } from "firebase/firestore/lite";
 import { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import { CartContext } from "../../context/CartContext"
 import { db } from "../../firebase/config";
 
@@ -8,7 +9,7 @@ export const Checkout = () => {
     const [values, setValues] = useState({
         nombre: "",
         email: "",
-        telefono: "",
+        tel: ""
     })
 
     const {cart, totalCompra, vaciarCarrito} = useContext(CartContext);
@@ -18,18 +19,18 @@ export const Checkout = () => {
                 buyer: buyer,
                 items: cart,
                 total: totalCompra()
-            },
+            }
     
         const batch = writeBatch(db)
-        
-        const productosRef = collection(db, productos)
+        const productosRef = collection(db, "productos")
         const ordersRef = collection(db, "orders")
         const q = query(productosRef, where(documentId(), "in", cart.map(el => el.id)))
+        console.log(documentId())
 
         const outOfStock = []
 
         getDocs(q)
-            .then((res)=> {
+            .then((res) => {
                 res.docs.forEach((doc)=> {
                     const itemToUpdate = cart.find((prod) => prod.id === doc.id)
                     if(doc.data().stock >= itemToUpdate.cantidad){
@@ -76,6 +77,7 @@ export const Checkout = () => {
                 <>
                     <h2>Gracias por comprar</h2>
                     <p>El id de la compra es: {orderId}</p>
+                    <Link to="/" className="btn btn-primary"> Volver </Link>
                 </>
             :   
                 <>
@@ -84,8 +86,8 @@ export const Checkout = () => {
                     <form onSubmit={handleSubmit}>
                         <input className="form-control my-2" placeholder="nombre y apellido" type="text" value={values.nombre} onChange={handleInputChange} name="nombre"></input>
                         <input className="form-control my-2" placeholder="mail" type="email" value={values.email} onChange={handleInputChange} name="email"></input>
-                        <input className="form-control my-2" placeholder="telefono" type="tel" value={values.telefono} onChange={handleInputChange} nombre="telefono"></input>
-                        <button type="submit" className="btn- btn-success">Send</button>
+                        <input className="form-control my-2" placeholder="telefono" type="tel" value={values.tel} onChange={handleInputChange} name="tel"></input>
+                        <button type="submit" className="btn btn-success">Send</button>
                     </form>
                     
                     
