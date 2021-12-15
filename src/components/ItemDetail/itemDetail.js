@@ -48,7 +48,7 @@ export const ItemDetail = ( {idSelected} ) => {
                             onAdd={handleAgregar}
                             counter={counter}
                         />
-                    :  <Link to="/cart"> <button className="btn btn-success mx-3">Terminar compra</button> </Link>   
+                    :  <Link to="/cart"> <button className="btn btn-success mx-3">Terminar compra</button></Link>   
                     }
                 </div>
                 

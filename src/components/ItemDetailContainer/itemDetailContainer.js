@@ -1,7 +1,9 @@
+import { collection, doc, getDoc } from "firebase/firestore/lite";
 import  React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { pedirItem } from "../../utils/askData";
+import { db } from "../../firebase/config";
 import { ItemDetail } from "../ItemDetail/itemDetail";
+
 
 
 export const ItemDetailContainer = () => {
@@ -10,18 +12,19 @@ export const ItemDetailContainer = () => {
     const {itemId} = useParams()
     
     useEffect(() => {
-        pedirItem(Number(itemId)).then(function(valor_resolucion){
-            setItem(valor_resolucion)
-            
-        })
-        .catch( (err) => {
-            console.log(err)
-        })
-        .finally(() => {
-            console.log("promesa terminada")
-            
-        })
-    
+        const productosReferencia = collection(db, "productos")
+        const docRef = doc(productosReferencia, itemId)
+
+        getDoc(docRef)
+            .then((doc)=> {
+                setItem( {
+                    id: doc.id,
+                    ...doc.data()
+                })
+            })
+            .finally(()=> {
+                
+            })
     }, [])
 
 

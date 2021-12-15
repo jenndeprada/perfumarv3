@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { pedirDatos } from "../../utils/askData";
 import { ItemList} from "../ItemList/itemList" 
+import {db} from "../../firebase/config"
+import {collection, getDocs, query, where} from "firebase/firestore/lite"
+
 
 function ItemListContainer() {
 
@@ -11,23 +13,26 @@ function ItemListContainer() {
     const {categoryId} = useParams()
     console.log(useParams())
 
-    useEffect(() => {
+    useEffect(()=>{
 
-        setLoading(true)
-        pedirDatos().then((valor_resolucion)=> {
-            if(categoryId){
-                setItems( valor_resolucion.filter((element) => element.tipo === categoryId))
-            } else {
-                setItems(valor_resolucion)
-            }
-            
-        })
-        .catch( (err) => {
-            console.log("promesa rechazada")
-        })
-        .finally(() => {
-            setLoading(false)
-        })
+        setLoading(true)  //creo una referencia a la coleccion de mi base
+        const productosReferencia = collection(db, "productos");
+        const q =  categoryId ? query(productosReferencia, where("category", "==", categoryId)) : productosReferencia
+        //llamo a la ref de la funcion con getDocs
+        getDocs(q)
+            .then(resp => {
+                const productos = resp.docs.map((doc) => {
+                    return {
+                        id: doc.id, //para obtener el id de la base de datos
+                        ...doc.data()
+                    }
+                })
+                setItems(productos)
+            })
+            .finally(()=>{
+                setLoading(false)
+            })
+
     
     }, [categoryId])
 

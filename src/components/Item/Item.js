@@ -27,7 +27,7 @@ export const Item = ({item}) => {
                             <li className="list-group-item">Marca: {item.marca}</li>
                             <li className="list-group-item">Tipo: {item.tipo}</li>
                             <li className="list-group-item">Sexo: Femenino</li>
-                            <li className="list-group-item">Categoria: Femenino</li>
+                            <li className="list-group-item">Categoria: {item.categoria}</li>
                           </ul>
                         </div>
                       </div>
