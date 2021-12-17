@@ -69,26 +69,38 @@ export const Checkout = () => {
     }
 
 
+
     return(
         
         <div>
             {   orderId
             ? 
-                <>
-                    <h2>Gracias por comprar</h2>
-                    <p>El id de la compra es: {orderId}</p>
-                    <Link to="/" className="btn btn-primary"> Volver </Link>
+                <>  
+                    <div className="container text-center">
+                        <h1>Gracias por comprar</h1>
+                        <p>El id de tu compra es: {orderId}, conservalo ante futuras eventualidades</p>
+                        <Link to="/" className="btn btn-primary"> Volver </Link>
+                    </div>
+         
                 </>
             :   
-                <>
-                    <h2>Resumen de Compra</h2>
-                    <hr/>
-                    <form onSubmit={handleSubmit}>
-                        <input className="form-control my-2" placeholder="nombre y apellido" type="text" value={values.nombre} onChange={handleInputChange} name="nombre"></input>
-                        <input className="form-control my-2" placeholder="mail" type="email" value={values.email} onChange={handleInputChange} name="email"></input>
-                        <input className="form-control my-2" placeholder="telefono" type="tel" value={values.tel} onChange={handleInputChange} name="tel"></input>
-                        <button type="submit" className="btn btn-success">Send</button>
-                    </form>
+                <>  
+                    <div className="container pt-3">
+                        <h2>Resumen de Compra:</h2>
+                        {
+                            cart.length !== 0
+                            ? <h4>display</h4>
+                            : alert("No hay elementos en el carrito")
+                        }
+                        <hr/>
+                        <form onSubmit={handleSubmit}>
+                            <input className="form-control my-2" placeholder="nombre y apellido" type="text" value={values.nombre} onChange={handleInputChange} name="nombre"></input>
+                            <input className="form-control my-2" placeholder="mail" type="email" value={values.email} onChange={handleInputChange} name="email"></input>
+                            <input className="form-control my-2" placeholder="telefono" type="tel" value={values.tel} onChange={handleInputChange} name="tel"></input>
+                            <button type="submit" className="btn btn-success">Send</button>
+                        </form>
+                    </div>
+                    
                     
                     
                 </>

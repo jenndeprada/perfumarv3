@@ -1,8 +1,9 @@
 import { useContext } from "react/cjs/react.development";
 import { CartContext } from "../../context/CartContext";
-import {BsFillTrashFill} from "react-icons/bs"
-import { Link } from "react-router-dom";
+import {BsFillTrashFill, BsPlusCircleFill} from "react-icons/bs"
 
+import { Link } from "react-router-dom";
+import { Item } from "../Item/Item";
 
 export const CartView = () => {
 
@@ -13,9 +14,10 @@ export const CartView = () => {
     return (
         <div className="container">
             {   cart.length === 0
-                ?   <div className="container-fluid"> 
-                        <h2>Tu carrito esta vacio: </h2>
-                        <Link to="/">Seguir comprando</Link>
+                ?   <div className="container-fluid text-center costum"> 
+                        <h2>Tu carrito esta vacio </h2>
+                        <Link to="/" className="btn btn-success">Seguir comprando</Link>
+                        
                     </div>
 
                 : <div className="container-fluid">
@@ -24,9 +26,26 @@ export const CartView = () => {
                         {
                             cart.map( (el) => {
                                 return (
-                                    <div key={el.id}>
-                                    <h3>Nombre: {el.nombre}</h3>
-                                    <button className="btn btn-danger" onClick={() => eliminarDelCarrito(el.id)}><BsFillTrashFill/></button>
+                                    <div key={el.id} className="d-flex p-3">
+                                    <ol className="list-group list-group-numbered">
+                                    <li className="list-group-item d-flex justify-content-between align-items-start">
+                                        <div className="ms-2 me-auto">
+                                        <div className="fw-bold">{el.nombre}
+                                        </div>
+                                        Descripcion del producto 
+                                        </div>
+                                        <span className="badge bg-primary rounded-pill">{el.cantidad}</span>
+                                        
+                                    </li>
+                                    </ol>
+                                    <div className="d-flex align-items-center p-4">
+                                      <button className="btn btn-danger" onClick={() => eliminarDelCarrito(el.id)}><BsFillTrashFill/></button>
+                                      <Link className="btn btn-success mx-3" to="/"><BsPlusCircleFill/></Link>
+                            
+                                    </div>
+                                    
+                                    
+                                    
                                     </div>
                                 )
             

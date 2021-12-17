@@ -9,7 +9,7 @@ export const Item = ({item}) => {
     let acor = "acordion" + idString;
     let heading = "heading" + idString
     return (
-        <div className="pt-3 col-xs-12 col-md-6 col-lg-4 d-inline-flex justify-content-center">
+        <div className="pt-3 col-xs-6 col-md-4 col-lg-3 d-inline-flex justify-content-center">
             <div className="px-2">
               <div className="card">
                 <img src={`${item.imagen}`} className="card-img-top" alt={"perfume " + idString}/>
@@ -36,6 +36,7 @@ export const Item = ({item}) => {
                   <p className="card-text">{item.descripcion}</p>
                   <div className="d-flex"> 
                         <Link to={`/detail/${item.id}`}><button className="btn btn-dark">Ver mas</button></Link>
+                        <h4 className="px-3 pt-1"> ${item.precio}</h4>
                   </div>
                
                 </div>

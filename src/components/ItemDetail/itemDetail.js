@@ -21,6 +21,7 @@ export const ItemDetail = ( {idSelected} ) => {
             id: idSelected.id,
             nombre: idSelected.nombre,
             cantidad: counter,
+            precio: idSelected.precio
         })
     }
 
@@ -37,7 +38,9 @@ export const ItemDetail = ( {idSelected} ) => {
                     <li className="list-group-item active bg-dark" aria-current="true">Nombre: {idSelected.nombre}</li>
                     <li className="list-group-item"> Marca: {idSelected.marca}</li>
                     <li className="list-group-item">Tipo: {idSelected.tipo}</li>
-                    <li className="list-group-item">ID: {idSelected.id}</li>
+                    <li className="list-group-item">Categoria: {idSelected.categoria}</li>
+                    <li className="list-group-item">Precio: {idSelected.precio}</li>
+                    <li className="list-group-item">Stock disponible: {idSelected.stock} unidades</li>
                 </ul> 
                 <div className="d-flex py-3">   
                     <button className="btn btn-dark" onClick={goBack}>Volver</button>

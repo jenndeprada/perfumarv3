@@ -1,16 +1,11 @@
-/* .navBar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: cornflowerblue;
+
+a {
+    color: aliceblue;
+    text-decoration: none;
+    font-size: large;
+    
 }
 
-ul {
-    display: flex;
-    align-items: center;
+a:hover {
+    color: rgb(214, 181, 221);
 }
-
-li {
-    padding: 5px;
-    list-style: none;
-} */
